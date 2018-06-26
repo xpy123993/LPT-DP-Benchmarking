@@ -6,6 +6,8 @@
 const int MIN_PROCESS_TIME = 5;
 const int MAX_PROCESS_TIME = 100;
 
+const int MAX_M = 10;
+
 struct TaskInfo
 {
 	int due_date;
@@ -27,6 +29,7 @@ TaskInfo task_generate(int n, int m)
 		taskInfo.job_procs[i] = randint(MIN_PROCESS_TIME, MAX_PROCESS_TIME);
 		taskInfo.total_proc += taskInfo.job_procs[i];
 	}
+	
 	taskInfo.due_date = (int) (1.0 * taskInfo.total_proc / m);
 
 	return taskInfo;
