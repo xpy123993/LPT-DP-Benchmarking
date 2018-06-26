@@ -23,8 +23,6 @@ inline double _lpt_solve_ratio(int n, int m) { return 1.0 * m * n / ((n - 1) * m
 
 int _LPT_COMPLETION_TIME[MAX_M], _DP_TABLE_INDEX[MAX_M + 1];
 
-double lpt_running_time, dp_running_time;
-
 int lpt_solve(TaskInfo& taskInfo)
 {
 	int machine_id = 0;
@@ -53,12 +51,12 @@ void _dp_recursive_fill_table(int deep, TaskInfo& taskInfo, DP_table& table, int
 		int temp_index, backup_early_work, resi_result, min_val = 10000007;
 		for (int machine_id = 0; machine_id < taskInfo.m; machine_id++)
 		{
-			resi_result = max(job_proc_time - _DP_TABLE_INDEX[machine_id], 0);
+			resi_result = max(job_proc_time - _DP_TABLE_INDEX[machine_id + 1], 0);
 
 			if (job_id > 0)
 			{
-				temp_index = max(0, _DP_TABLE_INDEX[machine_id] - job_proc_time);
-				backup_early_work = _DP_TABLE_INDEX[machine_id];
+				temp_index = max(0, _DP_TABLE_INDEX[machine_id + 1] - job_proc_time);
+				backup_early_work = _DP_TABLE_INDEX[machine_id + 1];
 				_DP_TABLE_INDEX[machine_id + 1] = temp_index;
 				_DP_TABLE_INDEX[0] -= 1;
 

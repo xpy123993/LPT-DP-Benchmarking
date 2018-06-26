@@ -74,10 +74,24 @@ public:
 	{
 		table = initialize_dp_pn_table(n, m, d);
 	}
+
 	~DP_table()
 	{
 		free_dp_pn_table(table, n, m, d);
 	}
+
+	void reuse(int _n, int _m, int _d)
+	{
+		if (_n > n || m != _m || _d > d)
+		{
+			free_dp_pn_table(table, n, m, d);
+			n = _n;
+			m = _m;
+			d = _d;
+			table = initialize_dp_pn_table(n, m, d);
+		}
+	}
+
 	int val(int* index)
 	{
 		void** cur_table = table;
@@ -87,6 +101,7 @@ public:
 		}
 		return ((int*)cur_table)[index[m]];
 	}
+
 	void set_val(int* index, int val)
 	{
 		void** cur_table = table;

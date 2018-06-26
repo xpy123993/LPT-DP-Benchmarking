@@ -30,7 +30,7 @@ TaskInfo task_generate(int n, int m)
 		taskInfo.total_proc += taskInfo.job_procs[i];
 	}
 	
-	taskInfo.due_date = (int) (1.0 * taskInfo.total_proc / m);
+	taskInfo.due_date = (int) (1.0 * taskInfo.total_proc / (m));
 
 	return taskInfo;
 }
